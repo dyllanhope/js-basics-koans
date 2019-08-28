@@ -159,56 +159,12 @@ describe("When using object literals in JavaScipt", function() {
 		for (var i=0;i<apples.length;i++) {
 			const currentApple = apples[i];
 			// don't change anything above this line
-
+			
 			// calculate the total price of all apples in the list
-
+			totalPrice += currentApple.price;
 			// don't change anything below this line
 		}
-		assert.equal(0, totalPrice)
-		
-	});
-
-	it("know that you can loop over a list of objects and calculate something using properties of each object", function(){
-		const apples = [
-			{
-				color : "yellow",
-				price : 3.65,
-				flavour : "sour"
-			}, {
-				color : "red",
-				price : 4.25,
-				flavour : "sweet"
-			},{
-				color : "red",
-				price : 2.55,
-				flavour : "sweet"
-			},
-			{
-				color : "yellow",
-				price : 3.95,
-				flavour : "sour"
-			}, {
-				color : "red",
-				price : 2.25,
-				flavour : "sweet"
-			},{
-				color : "red",
-				price : 2.15,
-				flavour : "sweet"
-			}
-		];
-		
-		let totalPriceForRedApples = 0;
-		// loop over the list here
-		for (var i=0;i<apples.length;i++) {
-			const currentApple = apples[i];
-			// don't change anything above this line
-
-			// calculate the total price of all apples in the list
-
-			// don't change anything below this line
-		}
-		assert.equal(0, totalPriceForRedApples)
+		assert.equal(18.80, totalPrice.toFixed(2))
 		
 	});
 
@@ -251,10 +207,10 @@ describe("When using object literals in JavaScipt", function() {
 			// don't change anything above this line
 
 			// calculate the total price of all apples in the list
-
+			
 			// don't change anything below this line
 		}
-		assert.equal(0, totalPriceForRedApples)
+		assert.equal(11.20, totalPriceForRedApples.toFixed(2))
 		
 	});
 
@@ -294,8 +250,8 @@ describe("When using object literals in JavaScipt", function() {
 			const currentApple = apples[i];
 			// don't change anything above this line
 
-			// calculate the total price of all apples in the list
-
+			// create a unique list of all the apple colors
+			
 			// don't change anything below this line
 		}
 		assert.deepEqual(["yellow", "green", "red"], colors)
@@ -305,7 +261,7 @@ describe("When using object literals in JavaScipt", function() {
 	it("know that you can loop over a list of objects and find out how many time a certain value property occurs in a propery of an object", function(){
 		const apples = [
 			{
-				color : "yellow",
+				color : "red",
 				price : 3.65,
 				flavour : "sour"
 			}, {
@@ -313,6 +269,16 @@ describe("When using object literals in JavaScipt", function() {
 				price : 4.25,
 				flavour : "sweet"
 			},{
+				color : "yellow",
+				price : 2.55,
+				flavour : "sweet"
+			},
+			{
+				color : "red",
+				price : 2.55,
+				flavour : "sweet"
+			},
+			{
 				color : "yellow",
 				price : 2.55,
 				flavour : "sweet"
@@ -329,20 +295,24 @@ describe("When using object literals in JavaScipt", function() {
 				color : "red",
 				price : 2.15,
 				flavour : "sweet"
+			},{
+				color : "yellow",
+				price : 6.15,
+				flavour : "sweet"
 			}
 		];
 		
-		let colorCount = [];
+		let colorCount = {};
 		// loop over the list here
 		for (var i=0;i<apples.length;i++) {
 			const currentApple = apples[i];
 			// don't change anything above this line
 
-			// calculate the total price of all apples in the list
+			// calculate how many of each color of apple there are
 
 			// don't change anything below this line
 		}
-		assert.deepEqual({}, colorCount);
+		assert.deepEqual({ red: 4, green: 2, yellow: 3 }, colorCount);
 		
 	});
 
@@ -360,6 +330,10 @@ describe("When using object literals in JavaScipt", function() {
 				color : "yellow",
 				price : 4.55,
 				flavour : "sweet"
+			},{
+				color : "yellow",
+				price : 7.55,
+				flavour : "sweet"
 			},
 			{
 				color : "red",
@@ -376,17 +350,30 @@ describe("When using object literals in JavaScipt", function() {
 			}
 		];
 		
-		let colorCount = [];
+		const colorCount = [];
 		// loop over the list here
 		for (var i=0;i<apples.length;i++) {
 			const currentApple = apples[i];
 			// don't change anything above this line
 
-			// calculate the total price of all apples in the list
+			// find all the yellow apples cheaper than 5.00
 
 			// don't change anything below this line
 		}
-		assert.deepEqual({}, colorCount);
+
+		const expectedResult = [
+			{
+				color : "yellow",
+				price : 3.65,
+				flavour : "sour"
+			}, {
+				color : "yellow",
+				price : 4.55,
+				flavour : "sweet"
+			}
+		];
+
+		assert.deepEqual(expectedResult, colorCount);
 		
 	});
 

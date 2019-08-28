@@ -14,11 +14,11 @@ describe("When declaring variables in JavaScript", function() {
 		// vegetable is not visible outside of the function
 		try {
 			console.log(vegetable)
-		} catch {
+		} catch(e) {
 			// assert.ok just need true or ""
+			console.log(e.stack)
 			assert.ok(null, "vegetable doesn't exist")
 		}
-		// assert.isUndefined(vegetable);
 
 		var age = 23;
 		if (age > 21) {
@@ -60,7 +60,6 @@ describe("When declaring variables in JavaScript", function() {
 			// assert.ok just need true or ""
 			assert.ok(null, "vegetable doesn't exist")
 		}
-		// assert.isUndefined(vegetable);
 
 		var age = 23;
 		if (age > 21) {
@@ -90,7 +89,7 @@ describe("When declaring variables in JavaScript", function() {
 			try {
 				assert.equal("", vegetable);
 			} catch(err) {
-				assert.ok(null, "vegetable doesn't exist in the function")
+				assert.ok(null, "vegetable is not visible in the function scope")
 			}
 
 			// change code above this line
@@ -104,7 +103,7 @@ describe("When declaring variables in JavaScript", function() {
 			console.log(vegetable)
 		} catch {
 			// assert.ok just need true or ""
-			assert.ok(null, "vegetable doesn't exist")
+			assert.ok(null, "vegetable doesn't exist outside of the function either")
 		}
 
 		var age = 23;
@@ -117,7 +116,7 @@ describe("When declaring variables in JavaScript", function() {
 		try {
 			assert.equal("", username)
 		} catch {
-			assert.ok(null, "username doesn't exist")
+			assert.ok(null, "username doesn't exist in the function as it's only visible in the block")
 		}
 	});
 
@@ -126,7 +125,7 @@ describe("When declaring variables in JavaScript", function() {
 		function declareUsingConst() {
 			const vegetable = "carrot";
 			// const variables can be used as normal
-			assert.equal("carrot", vegetable);
+			assert.equal("", vegetable);
 			try {
 				vegetable = "beetroot";
 			} catch (err) {
@@ -135,7 +134,25 @@ describe("When declaring variables in JavaScript", function() {
 			}
 		}
 
+		function constScope() {
+			// const variables can be used as normal
+			
+			try {
+				const vegetable = "carrot";
+				assert.equal("", vegetable);
+				vegetable = "beetroot";
+			} catch (err) {
+				// assert.ok just need true or ""
+				assert.ok(null, "vegetable is a const and can't be changed")
+			}
+
+			// vegetable is defined as const which also has block scope
+			// surround this with a try catch block to catch the
+			console.log(vegetable); 
+		}
+
 		declareUsingConst();
+		constScope();
 
 		// vegetable is not visible outside of the function
 		try {
